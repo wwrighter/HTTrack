@@ -1,0 +1,43 @@
+/* ----------------------------------------------------------- 
+ * @HTTrack
+ * @author: William Wright
+ * @github: wwrighter
+ * @email : williamfzwright@outlook.com
+ * @date  : 5/22/2015
+ ----------------------------------------------------------- */
+
+Usage: HTTrack <Absolute URL> 
+
+HTTrack parses the URL argument to find the host name. 
+i.e. HTTrack https://ogscanada.ca/products.html 
+
+host_name: ogscanada.ca
+path_name: /products.html
+
+The overall goal of this is to test URL's with basic structure.  In doing
+so, mirror the web site by producing an identical directory structure to
+the one maintained by the original website.  All documents referenced in
+the initial HTML document of the "remote" server will be downloaded.  For 
+simplicity sake this assumes a rather simplistic initial loading of hyperlinks
+of the form: <a href="[http://host_name/]path_name">some text</a>.
+
+After cloning a simple "remote" site and its structure, we are able to launch
+a very basic web server which allows our mirrored site to be accessed through
+the internet.  The web server is setup only to handle GET requests.  The following
+status codes are set up:
+* 200 OK
+* 400 Bad Request
+* 404 Not Found
+
+If the requested HTML file does not exist on the local server, a "Not Found" error
+is returned.  Otherwise, an HTTP OK message is retured along with the simplified
+version of the requested file. Another goal of the web server is the ability to 
+handle more than one request 
+simultaneously.
+
+Usage: WebServer <Port>
+
+The web server is called "WebServer" and takes one argument that specifies the port
+number at which the server should be listening for incoming requests: 
+i.e. WebServer 80
+
